@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mashamba KS Academy</title>
+  <style>
+    /* === BASE STYLES === */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .background {
+      position: relative; 
+      height: 100vh; 
+      overflow: hidden;
+    }
+
+    .background_img {
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      z-index: -1;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(10, 20, 50, 0.85), rgba(5, 12, 35, 0.9));
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 95%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 10px;
+      z-index: 2;
+      color: white;
+    }
+
+    header .logo {
+      font-weight: bold;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      flex: 1;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      text-transform: capitalize;
+    }
+
+    nav a:hover {
+      color: orange;
+    }
+
+    .social {
+      display: flex;
+      align-items: center;
+    }
+
+    .social a {
+      margin-left: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .social a:hover {
+      color: orange;
+    }
+
+    .social button {
+      margin-left: 15px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background: orange;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+      text-transform: uppercase;
+    }
+
+    .social button:hover {
+      background: darkorange;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50px;
+      transform: translateY(-50%);
+      color: white;
+      z-index: 2;
+      max-width: 550px;
+    }
+
+    .content h1 {
+      font-size: 52px;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      text-transform: capitalize;
+      font-weight: 700;
+    }
+
+    .content p {
+      font-size: 20px;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    .language {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      z-index: 2;
+      color: white;
+    }
+
+    .language select {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    /* Scroll down indicator */
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      z-index: 2;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .scroll-down span {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .scroll-down i {
+      font-size: 30px;
+    }
+
+    /* Natural wave transition */
+    .wave-transition {
+      position: relative;
+      height: 150px;
+      overflow: hidden;
+      background: #0a1432;
+    }
+
+    .ocean {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .natural-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M321.39 56.44c58-10.79 114.16-30.13 172-41.86 82.39-16.72 168.19-17.73 250.45-.39C823.78 31 906.67 72 985.66 92.83c70.05 18.48 146.53 26.09 214.34 3V0H0v27.35a600.21 600.21 0 003321.39 29.09z' fill='%23ffffff'/%3E%3C/svg%3E");
+      background-size: 1200px 100%;
+      animation: waveMove 18s linear infinite;
+      opacity: 0.7;
+    }
+
+    .natural-wave:nth-child(1) {
+      animation-delay: 0s;
+      animation-duration: 15s;
+      opacity: 0.5;
+      height: 105%;
+    }
+
+    .natural-wave:nth-child(2) {
+      animation-delay: -2s;
+      animation-duration: 12s;
+      opacity: 0.6;
+      height: 102%;
+      background-size: 1100px 100%;
+    }
+
+    .natural-wave:nth-child(3) {
+      animation-delay: -4s;
+      animation-duration: 10s;
+      opacity: 0.8;
+      height: 100%;
+      background-size: 1000px 100%;
+    }
+
+    @keyframes waveMove {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* About Us Section Styling */
+    #about {
+      padding: 40px 20px 0;
+      background: white;
+      color: #333;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #about h2 {
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      color: #0a1432;
+    }
+
+    #about h2:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: orange;
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .author-section {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+    }
+
+    .author-image-container {
+      margin-bottom: 25px;
+    }
+
+    .author-image {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid rgba(255, 165, 0, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .author-title {
+      font-size: 1.5rem;
+      color: #0a1432;
+      margin-bottom: 15px;
+    }
+
+    .author-name {
+      color: orange;
+      font-weight: 600;
+      font-size: 19px;
+    }
+
+    .info-section {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .justified-text {
+      text-align: justify;
+      line-height: 1.8;
+      font-size: 14px;
+      font-weight: 300;
+      color: #444;
+    }
+
+    #about p {
+      margin-bottom: 25px;
+    }
+
+    #about strong {
+      color: orange;
+      font-weight: 600;
+    }
+
+    #about ul {
+      text-align: left;
+      margin: 0 auto 30px;
+      padding-left: 20px;
+    }
+
+    #about li {
+      margin-bottom: 12px;
+      line-height: 1.6;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .specializations {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 25px;
+      border-radius: 10px;
+      margin: 30px 0;
+      border-left: 4px solid orange;
+    }
+
+    .specializations h3 {
+      color: #0a1432;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+
+    /* Footer Styling */
+    footer {
+      background: linear-gradient(135deg, #0a1432 0%, #1a2b5a 100%);
+      color: white;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copyright {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 20px;
+    }
+
+    .footer-social {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .footer-social a {
+      text-decoration: none;
+      margin: 0 15px;
+    }
+
+    .footer-social i {
+      font-size: 24px;
+      color: white;
+      transition: color 0.3s;
+    }
+
+    .footer-social i:hover {
+      color: orange;
+    }
+
+    .footer-contact {
+      flex: 1;
+      min-width: 250px;
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .footer-contact p {
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .footer-contact ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-contact li {
+      margin-bottom: 5px;
+    }
+
+    /* Login/Signup Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .auth-modal {
+      background: rgba(26, 38, 75, 0.95);
+      border-radius: 10px;
+      width: 90%;
+      max-width: 450px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      transform: translateY(-50px);
+      transition: transform 0.5s;
+    }
+
+    .modal-overlay.active .auth-modal {
+      transform: translateY(0);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #777;
+    }
+
+    .close-modal:hover {
+      color:  #777;
+    }
+
+    .auth-tabs {
+      display: flex;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #eee;
+    }
+
+    .auth-tab {
+      padding: 12px 20px;
+      background: none;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #777;
+      position: relative;
+    }
+
+    .auth-tab.active {
+      color: orange;
+    }
+
+    .auth-tab.active:after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: orange;
+    }
+
+    .auth-form {
+      display: none;
+    }
+
+    .auth-form.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color:  #777;
+    }
+
+    .form-group input {
+      width: 95%;
+      padding: 12px 15px;
+      border: 1px solid rgba(26, 38, 75);
+      border-radius: 5px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: orange;
+      outline: none;
+    }
+
+    .auth-submit {
+      width: 100%;
+      padding: 12px;
+      background: orange;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .auth-submit:hover {
+      background: darkorange;
+    }
+
+    .form-footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #777;
+    }
+
+    .form-footer a {
+      color: orange;
+      text-decoration: none;
+    }
+
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Improved Mobile Menu Styles */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      padding-right:15px;
+      z-index: 1000;
+    }
+
+    .menu-toggle span {
+      width: 30px;
+      height: 3px;
+      background: white;
+      border-radius: 3px;
+      transition: all 0.3s linear;
+      position: relative;
+      transform-origin: center;
+    }
+
+    /* Improved Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(135deg, #0a1432 0%, #1a2b5a 100%);
+      z-index: 999;
+      padding: 80px 10px 20px;
+      transition: right 0.4s ease-in-out;
+      box-shadow: -5px 0 25px rgba(0, 0, 0, 0.4);
+      overflow-y: auto;
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    .mobile-nav a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 18px 15px;
+      margin: 12px 0;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s;
+      background: rgba(255, 255, 255, 0.1);
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .mobile-nav a:hover {
+      background: rgba(255, 165, 0, 0.2);
+      color: orange;
+      transform: translateX(-5px);
+    }
+
+    .mobile-nav .close-btn {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      font-size: 24px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .mobile-nav .close-btn:hover {
+      color: orange;
+    }
+
+    .mobile-nav .logo-container {
+      text-align: center;
+      padding: 20px 0;
+      padding-right:30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .mobile-nav .logo-container .logo {
+      font-weight: bold;
+      font-size: 12px;
+      color: white;
+      letter-spacing: 1px;
+    }
+
+    .overlay-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s, visibility 0.4s;
+    }
+
+    .overlay-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Menu toggle animation */
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      nav {
+        display: none;
+      }
+      
+      .social {
+        display: none;
+      }
+      
+      .menu-toggle {
+        display: flex;
+      }
+      
+      .content {
+        left: 20px;
+        max-width: 90%;
+      }
+      
+      .content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .content p {
+        font-size: 1.1rem;
+      }
+      
+      #about {
+        padding: 80px 15px 0;
+      }
+      
+      #about h2 {
+        font-size: 2.2rem;
+      }
+      
+      .author-image {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .about-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .wave-transition {
+        height: 120px;
+      }
+      
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-contact {
+        text-align: center;
+      }
+      
+      .auth-modal {
+        width: 85%;
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .content h1 {
+        font-size: 2rem;
+      }
+      
+      .content {
+        text-align: center;
+        left: 0;
+        width: 100%;
+        padding: 0 20px;
+      }
+      
+      #about h2 {
+        font-size: 1.8rem;
+      }
+      
+      .author-image {
+        width: 180px;
+        height: 180px;
+      }
+    }
+
+    @media (min-width: 993px) {
+      .mobile-nav {
+        display: none;
+      }
+      
+      .overlay-backdrop {
+        display: none;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- HOMEPAGE SECTION -->
+  <div class="background">
+    <img class="background_img" src="background_image.png" alt="Background Image">
+    <div class="overlay"></div>
+
+    <header>
+      <div class="logo">Mashamba KS</div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="AI_altemet.html" target="blank">Visual Class</a>
+        <a href="scrow_view.html" target="_blank">Book Shop</a>
+        <a href="#contact">community & Contact</a>
+      </nav>
+      <div class="social">
+        <a href="#" id="signup-link">Sign Up</a>
+        <button id="login-btn">Log In</button>
+      </div>
+      
+      <!-- Mobile menu toggle button -->
+      <button class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <div class="content">
+      <h1>Believe in your Knowledge</h1>
+      <p>Explore Our Visual Classes, Premium Books, and Personalized Learning Services.<br>
+         Transform Ideas into Success and Empower Your Future Today!</p>
+    </div>
+
+    <a href="#about" class="scroll-down">
+      <span>Discover More</span>
+      <i class="fas fa-chevron-down"></i>
+    </a>
+
+    <div class="language">
+      <label for="lang">Lang: </label>
+      <select id="lang">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+      </select>
+    </div>
+  </div>
+  
+  <!-- Improved Mobile Navigation -->
+  <div class="mobile-nav" id="mobile-nav">
+    <button class="close-btn" id="close-menu">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <div class="logo-container">
+      <div class="logo">Mashamba KS</div>
+    </div>
+    
+    <a href="#home" class="mobile-nav-link">Home</a>
+    <a href="AI_altemet.html" target="blank" class="mobile-nav-link">Visual Class</a>
+    <a href="scrow_view.html" target="_blank" class="mobile-nav-link">Book Shop</a>
+    <a href="#contact" class="mobile-nav-link">Community & Contact</a>
+    
+    <div style="margin-top: 30px; padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
+      <a href="#" id="mobile-signup-link" style="display: block; padding: 15px; background: rgba(255,165,0,0.2); color: white; border-radius: 5px; margin-bottom: 10px; text-decoration: none;">
+        Sign Up
+      </a>
+      <button id="mobile-login-btn" style="width: 100%; padding: 15px; border: none; border-radius: 5px; background: orange; color: white; cursor: pointer; font-weight: 600;">
+        Log In
+      </button>
+    </div>
+  </div>
+  
+  <!-- Overlay backdrop for mobile menu -->
+  <div class="overlay-backdrop" id="overlay-backdrop"></div>
+  
+  <!-- WAVE TRANSITION -->
+  <div class="wave-transition">
+    <div class="ocean">
+      <div class="natural-wave"></div>
+      <div class="natural-wave"></div>
+      <div class="natural-wave"></div>
+    </div>
+  </div>
+  
+  <!-- ABOUT US SECTION -->
+  <section id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      
+      <div class="about-content">
+        <div class="author-section">
+          <div class="author-image-container">
+            <img src="IMG-07.jpg" alt="Author image" class="author-image">
+          </div>
+          <div class="author-title">Dr. <span class="author-name">Mashamba</span></div>
+          <p>Former senior lecturer in Business Management and commercial manager with extensive experience in Tanzania's business sector.</p>
+        </div>
+        
+        <div class="info-section">
+          <div class="justified-text">
+            <p>
+              At Mashamba's Store, we are driven by a passion for education and a commitment to providing learners with high-quality academic resources. Our mission is to empower students to excel in their studies and careers through a curated selection of books and engaging online lectures. Whether you're looking to enhance your business knowledge or pursue a new career, we have the right resources for you.
+            </p>
+            
+            <div class="specializations">
+              <h3>Our Specializations</h3>
+              <ul>
+                <li>Business Finance</li>
+                <li>Costing and Management Accounting</li>
+                <li>Principles of Financial Accounting</li>
+                <li>Marketing Principles and Practice</li>
+                <li>Supply Chain Management</li>
+                <li>Quantitative Techniques in Management Decisions</li>
+              </ul>
+            </div>
+            
+            <p>
+              Our vision is to become the leading online bookstore and tuition provider, delivering valuable education at affordable prices. We invite you to join the Mashamba community and take the next step in your academic journey.
+            </p>
+            <p>
+              Thank you for choosing Mashamba Store and Tuition Center, your partner in learning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-copyright">
+        <p>&copy; 2024 Mashamba Knowledge Store. All Rights Reserved.</p>
+      </div>
+      
+      <div class="footer-social">
+        <a href="https://youtube.com/@stanslausmashamba?si=vfKBRyQoLUGYb0Fd" target="_blank">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://t.me/+-1fbfBy8bChhZjhk" target="_blank">
+          <i class="fab fa-telegram"></i>
+        </a>
+        <a href="#" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      
+      <div class="footer-contact">
+        <p>For more contact:</p>
+        <ul>
+          <li>+255 787 280 822</li>
+          <li>+255 654 668 458</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="auth-modal-overlay">
+    <div class="auth-modal">
+      <button class="close-modal" id="close-modal">&times;</button>
+      
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Login</button>
+        <button class="auth-tab" data-tab="signup">Sign Up</button>
+      </div>
+      
+      <form class="auth-form active" id="login-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="Enter your password" required>
+        </div>
+        
+        <button type="submit" class="auth-submit">Login</button>
+        
+        <div class="form-footer">
+          <p>Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a></p>
+        </div>
+      </form>
+      
+      <form class="auth-form" id="signup-form">
+        <div class="form-group">
+          <label for="signup-name">Full Name</label>
+          <input type="text" id="signup-name" placeholder="Enter your full name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" placeholder="Create a password" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="signup-confirm">Confirm Password</label>
+          <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
+        </div>
+        
+        <button type="submit', class="auth-submit">Create Account</button>
+        
+        <div class="form-footer">
+          <p>Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Language selection
+    document.getElementById('lang').addEventListener('change', function() {
+      const selectedLanguage = this.value;
+      console.log(`Selected language: ${selectedLanguage}`);
+    });
+
+    // Authentication modal functionality
+    const modalOverlay = document.getElementById('auth-modal-overlay');
+    const loginBtn = document.getElementById('login-btn');
+    const signupLink = document.getElementById('signup-link');
+    const closeModal = document.getElementById('close-modal');
+    const authTabs = document.querySelectorAll('.auth-tab');
+    const authForms = document.querySelectorAll('.auth-form');
+    const switchToSignup = document.getElementById('switch-to-signup');
+    const switchToLogin = document.getElementById('switch-to-login');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+
+    // Mobile menu functionality
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    const overlayBackdrop = document.getElementById('overlay-backdrop');
+    const closeMenu = document.getElementById('close-menu');
+    const mobileLoginBtn = document.getElementById('mobile-login-btn');
+    const mobileSignupLink = document.getElementById('mobile-signup-link');
+
+    // Function to open the mobile menu
+    function openMobileMenu() {
+      mobileNav.classList.add('active');
+      overlayBackdrop.classList.add('active');
+      menuToggle.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // Function to close the mobile menu
+    function closeMobileMenu() {
+      mobileNav.classList.remove('active');
+      overlayBackdrop.classList.remove('active');
+      menuToggle.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    // Toggle mobile menu
+    menuToggle.addEventListener('click', openMobileMenu);
+    
+    // Close mobile menu when clicking on close button
+    closeMenu.addEventListener('click', closeMobileMenu);
+    
+    // Close mobile menu when clicking on backdrop
+    overlayBackdrop.addEventListener('click', closeMobileMenu);
+    
+    // Close mobile menu when clicking on a navigation link
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Open modal for login from mobile menu
+    mobileLoginBtn.addEventListener('click', () => {
+      closeMobileMenu();
+      modalOverlay.classList.add('active');
+      switchTab('login');
+    });
+
+    // Open modal for signup from mobile menu
+    mobileSignupLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMobileMenu();
+      modalOverlay.classList.add('active');
+      switchTab('signup');
+    });
+
+    // Open modal for login
+    loginBtn.addEventListener('click', () => {
+      modalOverlay.classList.add('active');
+      switchTab('login');
+    });
+
+    // Open modal for signup
+    signupLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      modalOverlay.classList.add('active');
+      switchTab('signup');
+    });
+
+    // Close modal
+    closeModal.addEventListener('click', () => {
+      modalOverlay.classList.remove('active');
+    });
+
+    // Close modal when clicking outside
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('active');
+      }
+    });
+
+    // Switch between tabs
+    authTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = tab.getAttribute('data-tab');
+        switchTab(tabName);
+      });
+    });
+
+    // Switch to signup from login form link
+    switchToSignup.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab('signup');
+    });
+
+    // Switch to login from signup form link
+    switchToLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab('login');
+    });
+
+    // Function to switch tabs
+    function switchTab(tabName) {
+      // Update active tab
+      authTabs.forEach(tab => {
+        if (tab.getAttribute('data-tab') === tabName) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      // Update active form
+      authForms.forEach(form => {
+        if (form.id === `${tabName}-form`) {
+          form.classList.add('active');
+        } else {
+          form.classList.remove('active');
+        }
+      });
+    }
+
+    // Form submission handling
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      
+      // Here you would typically send this data to your server
+      console.log('Login attempt:', { email, password });
+      alert('Login functionality would connect to your backend server.');
+      // modalOverlay.classList.remove('active');
+    });
+
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      const confirmPassword = document.getElementById('signup-confirm').value;
+      
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+      
+      // Here you would typically send this data to your server
+      console.log('Signup attempt:', { name, email, password });
+      alert('Signup functionality would connect to your backend server.');
+      // modalOverlay.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
