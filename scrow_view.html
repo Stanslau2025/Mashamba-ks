@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mashamba KS Academy - Hero Section</title>
+<style>
+
+
+
+
+/* ===== Full-Screen Hero ===== */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    background: rgba(10, 20, 50, 0.7);
+    padding: 60px 20px;
+}
+
+/* Overlay to make text readable */
+.hero::before {
+    content: '';
+    position: absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Hero Content */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+}
+
+.hero h2 {
+    font-size: 3em;
+    margin: 0 0 10px 0;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+/* ===== Rotating Triangles Background ===== */
+.rotating-triangle-bg {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.rotating-triangle-bg .triangle {
+    position: absolute;
+    width: 150px;
+    height: 120px;
+    background-color: rgba(255,255,255,0.08);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    animation: rotateTriangle linear infinite;
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.triangle:nth-child(1) { top: 15%; left: 10%; animation-duration: 20s; }
+.triangle:nth-child(2) { top: 40%; left: 25%; animation-duration: 25s; }
+.triangle:nth-child(3) { top: 65%; left: 15%; animation-duration: 30s; }
+.triangle:nth-child(4) { top: 20%; left: 60%; animation-duration: 35s; }
+.triangle:nth-child(5) { top: 50%; left: 50%; animation-duration: 40s; }
+.triangle:nth-child(6) { top: 80%; left: 70%; animation-duration: 45s; }
+.triangle:nth-child(7) { top: 10%; left: 80%; animation-duration: 50s; }
+.triangle:nth-child(8) { top: 35%; left: 75%; animation-duration: 55s; }
+.triangle:nth-child(9) { top: 70%; left: 35%; animation-duration: 60s; }
+
+@keyframes rotateTriangle {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ===== Book Cards ===== */
+.book-cards {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row on large screens */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.book-card {
+    background: white;
+    color: #333;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-card:hover {
+    transform: translateY(-10px);
+    background-color: rgb(255, 165, 0);
+}
+.book-card:active{
+    background-color: aliceblue;
+}
+
+.book-card img {
+    width: 100%;
+    height: auto; /* Flexible height */
+    object-fit: cover;
+    display: block;
+}
+
+.book-card .book-info {
+    padding: 15px;
+    flex: 1;
+}
+
+.book-card h3 {
+    font-size: 1.1em;
+    margin: 0 0 5px 0;
+}
+
+.book-card p {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0;
+}
+
+.book-card p.price {
+    font-size: 1em;
+    font-weight: bold;
+    color: #ff6600;
+    margin-top: 5px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+    .book-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .book-cards { grid-template-columns: 1fr; }
+    .hero h2 { font-size: 2em; }
+    .hero p { font-size: 1em; }
+}
+</style>
+</head>
+<body>
+
+<section id="home" class="hero">
+  <!-- Hero Content -->
+  <div class="hero-content">
+    <h2>Find Your Next Great Read</h2>
+    <p>Explore our collection of books for higher education students.<br>Shop Now</p>
+  </div>
+
+  <!-- Book Cards -->
+  <div class="book-cards">
+    <div class="book-card">
+      <img src="https://via.placeholder.com/200x300?text=Book+1" alt="Book 1">
+      <div class="book-info">
+        <h3>Book Title 1</h3>
+        <p>Author Name</p>
+        <p class="price">$19.99</p>
+      </div>
+    </div>
+    <div class="book-card">
+      <img src="https://via.placeholder.com/200x300?text=Book+2" alt="Book 2">
+      <div class="book-info">
+        <h3>Book Title 2</h3>
+        <p>Author Name</p>
+        <p class="price">$25.99</p>
+      </div>
+    </div>
+    <div class="book-card">
+      <img src="https://via.placeholder.com/200x300?text=Book+3" alt="Book 3">
+      <div class="book-info">
+        <h3>Book Title 3</h3>
+        <p>Author Name</p>
+        <p class="price">$29.99</p>
+      </div>
+    </div>
+    <div class="book-card">
+      <img src="https://via.placeholder.com/200x300?text=Book+4" alt="Book 4">
+      <div class="book-info">
+        <h3>Book Title 4</h3>
+        <p>Author Name</p>
+        <p class="price">$22.99</p>
+      </div>
+    </div>
+    <div class="book-card">
+      <img src="https://via.placeholder.com/200x300?text=Book+5" alt="Book 5">
+      <div class="book-info">
+        <h3>Book Title 5</h3>
+        <p>Author Name</p>
+        <p class="price">$18.99</p>
+      </div>
+    </div>
+    <div class="book-card">
+      <img src="https://via.placeholder.com/200x300?text=Book+6" alt="Book 6">
+      <div class="book-info">
+        <h3>Book Title 6</h3>
+        <p>Author Name</p>
+        <p class="price">$21.99</p>
+      </div>
+    </div>
+    <div class="book-card">
+      <img src="https://via.placeholder.com/200x300?text=Book+7" alt="Book 7">
+      <div class="book-info">
+        <h3>Book Title 7</h3>
+        <p>Author Name</p>
+        <p class="price">$23.99</p>
+      </div>
+    </div>
+    <div class="book-card">
+      <img src="https://via.placeholder.com/200x300?text=Book+8" alt="Book 8">
+      <div class="book-info">
+        <h3>Book Title 8</h3>
+        <p>Author Name</p>
+        <p class="price">$20.99</p>
+      </div>
+    </div>
+    <div class="book-card">
+      <img src="https://via.placeholder.com/200x300?text=Book+9" alt="Book 9">
+      <div class="book-info">
+        <h3>Book Title 9</h3>
+        <p>Author Name</p>
+        <p class="price">$26.99</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rotating Triangles Background -->
+  <div class="rotating-triangle-bg">
+    <div class="triangle"></div>
+    <div class="triangle"></div>
+    <div class="triangle"></div>
+    <div class="triangle"></div>
+    <div class="triangle"></div>
+    <div class="triangle"></div>
+    <div class="triangle"></div>
+    <div class="triangle"></div>
+    <div class="triangle"></div>
+  </div>
+</section>
+
+</body>
+</html>
